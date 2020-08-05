@@ -28,6 +28,20 @@ class EventTest < Minitest::Test
   end
 
   def test_it_can_add_food_trucks
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    assert_equal [@food_truck1, @food_truck2, @food_truck3], @event.food_trucks
+  end
+
+  def test_it_can_list_names_of_food_trucks
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    assert_equal ["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"], @event.food_truck_names
+  end
+
+  def test_it_can_list_trucks_that_sell_specific_items
     @food_truck1.stock(@item1, 35)
     @food_truck1.stock(@item2, 7)
     @food_truck2.stock(@item4, 50)
@@ -36,7 +50,7 @@ class EventTest < Minitest::Test
     @event.add_food_truck(@food_truck1)
     @event.add_food_truck(@food_truck2)
     @event.add_food_truck(@food_truck3)
-    assert_equal [@food_truck1, @food_truck2, @food_truck3], @event.food_trucks
+    assert_equal [@food_truck1, @food_truck3], @event.food_trucks_that_sell(@item1)
   end
 
 end
