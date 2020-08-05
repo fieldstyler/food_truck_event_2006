@@ -19,4 +19,12 @@ class FoodTruckTest < Minitest::Test
     assert_equal "Rocky Mountain Pies", @food_truck.name
   end
 
+  def test_default_inventory_set_to_zero_and_can_check_stock
+    assert_equal 0, @food_truck.check_stock(@item1)
+  end
+
+  def test_it_can_stock_items
+    skip
+  end
+
 end
