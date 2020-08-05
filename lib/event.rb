@@ -43,4 +43,16 @@ class Event
     }
   end
 
+  def overstocked_items
+    overstocked_items_array = []
+    @food_trucks.each do |truck|
+      truck.inventory.each do |item|
+        if food_trucks_that_sell(item[0]).size > 1 && total_inventory[item[0]][:quantity] > 50
+          overstocked_items_array << item[0]
+        end
+      end
+    end
+    overstocked_items_array.uniq
+  end
+
 end
